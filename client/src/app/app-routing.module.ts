@@ -1,35 +1,25 @@
+import { InstructionsComponent } from './instructions/instructions.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { QuizComponent } from './quiz/quiz.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CatalogComponent } from './pages/catalog/catalog.component';
-import { DocsComponent } from './pages/docs/docs.component';
-import { SupportComponent } from './pages/support/support.component';
-import { Link1Component } from './pages/link1/link1.component';
+
+
 
 const routes: Routes = [
-	{
-		path: '',
-		loadChildren: () => import('./starter-home/starter-home.module').then(m => m.StarterHomeModule)
-	},
-	{
-		path: 'catalog',
-		component: CatalogComponent
-	},
-	{
-		path: 'docs',
-		component: DocsComponent
-	},
-	{
-		path: 'support',
-		component: SupportComponent
-	},
-	{
-		path: 'link1',
-		component: Link1Component
-	}
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'userDashboard', component: UserDashboardComponent},
+  {path: 'instructions', component: InstructionsComponent},
+  {path: 'quiz', component: QuizComponent},
+  {path: '**', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-	exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
